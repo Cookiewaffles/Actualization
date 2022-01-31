@@ -3,7 +3,10 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
-        <entry key="..\:/Users/Cookiewaffles/Desktop/SDV4116-O/Actualization/app/src/main/res/layout/activity_main.xml" value="0.25" />
+        <entry key="..\:/Users/Cookiewaffles/Desktop/SDV4116-O/Actualization/app/src/main/res/layout/activity_appointment_custom_create_page.xml" value="0.19114583333333332" />
+        <entry key="..\:/Users/Cookiewaffles/Desktop/SDV4116-O/Actualization/app/src/main/res/layout/activity_booking_page.xml" value="0.20520833333333333" />
+        <entry key="..\:/Users/Cookiewaffles/Desktop/SDV4116-O/Actualization/app/src/main/res/layout/activity_main.xml" value="0.33" />
+        <entry key="..\:/Users/Cookiewaffles/Desktop/SDV4116-O/Actualization/app/src/main/res/layout/activity_register.xml" value="0.36666666666666664" />
       </map>
     </option>
   </component>
