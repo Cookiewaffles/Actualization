@@ -10,6 +10,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Actualization">
         <activity
+            android:name=".ForgotPassword"
+            android:exported="true" />
+        <activity
             android:name=".BusinessDatabase"
             android:exported="true" />
         <activity
