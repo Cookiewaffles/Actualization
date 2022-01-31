@@ -10,6 +10,27 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Actualization">
         <activity
+            android:name=".BusinessDatabase"
+            android:exported="true" />
+        <activity
+            android:name=".AppointmentSampleCreatePage"
+            android:exported="true" />
+        <activity
+            android:name=".AppointmentCustomCreatePage"
+            android:exported="true" />
+        <activity
+            android:name=".BookingPage"
+            android:exported="true" />
+        <activity
+            android:name=".ProfilePage"
+            android:exported="true" />
+        <activity
+            android:name=".MainSchedulePage"
+            android:exported="true" />
+        <activity
+            android:name=".Register"
+            android:exported="true" />
+        <activity
             android:name=".MainActivity"
             android:exported="true">
             <intent-filter>
@@ -18,6 +39,10 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
+        <meta-data
+            android:name="preloaded_fonts"
+            android:resource="@array/preloaded_fonts" />
     </application>
 
 </manifest>
