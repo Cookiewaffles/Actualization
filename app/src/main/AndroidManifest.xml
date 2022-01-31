@@ -10,6 +10,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Actualization">
         <activity
+            android:name=".EventDetailPage"
+            android:exported="true" />
+        <activity
             android:name=".ForgotPassword"
             android:exported="true" />
         <activity
