@@ -7,11 +7,26 @@
     android:background="@color/black"
     tools:context=".BookingPage">
 
+    <EditText
+        android:id="@+id/txtTimeFrame"
+        android:layout_width="281dp"
+        android:layout_height="39dp"
+        android:layout_marginTop="40dp"
+        android:autofillHints="Walter White"
+        android:backgroundTint="@color/purple_200"
+        android:ems="10"
+        android:hint="TimeFrame"
+        android:inputType="textPersonName"
+        android:textColor="@color/white"
+        android:textColorHint="#737373"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/txtAppointment" />
+
     <Button
         android:id="@+id/btnSubmitAppt"
         android:layout_width="307dp"
         android:layout_height="56dp"
-        android:layout_marginBottom="124dp"
         android:text="Submit"
         android:textColor="@color/black"
         app:backgroundTint="@color/white"
@@ -19,7 +34,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/txtCost"
-        app:layout_constraintVertical_bias="0.846" />
+        app:layout_constraintVertical_bias="0.347" />
 
     <EditText
         android:id="@+id/txtCost"
@@ -51,7 +66,7 @@
         android:textColorHint="#737373"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/txtAppointment" />
+        app:layout_constraintTop_toBottomOf="@+id/txtTimeFrame" />
 
     <EditText
         android:id="@+id/txtBusiness"
