@@ -62,24 +62,35 @@
         android:id="@+id/btnPayment3"
         android:layout_width="150dp"
         android:layout_height="50dp"
-        android:layout_marginTop="84dp"
+        android:layout_marginTop="44dp"
         android:text="Payments"
         app:backgroundTint="@color/purple_200"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/btnStoreFront" />
+        app:layout_constraintTop_toBottomOf="@+id/btnEditStore" />
 
     <Button
         android:id="@+id/btnStoreFront"
         android:layout_width="150dp"
         android:layout_height="50dp"
-        android:layout_marginTop="64dp"
-        android:text="StoreFront"
+        android:layout_marginTop="36dp"
+        android:text="View Store"
         app:backgroundTint="@color/purple_200"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/username2" />
+
+    <Button
+        android:id="@+id/btnEditStore"
+        android:layout_width="150dp"
+        android:layout_height="50dp"
+        android:text="Edit Store"
+        app:backgroundTint="@color/purple_200"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintStart_toStartOf="parent"
+        tools:layout_editor_absoluteY="360dp" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

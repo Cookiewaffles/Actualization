@@ -10,6 +10,15 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Actualization">
         <activity
+            android:name=".Business_Settings"
+            android:exported="true" />
+        <activity
+            android:name=".Business_Payment"
+            android:exported="true" />
+        <activity
+            android:name=".Business_ViewStorePage"
+            android:exported="true" />
+        <activity
             android:name=".Business_CreateStoreFront"
             android:exported="true" />
         <activity

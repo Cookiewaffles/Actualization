@@ -19,7 +19,7 @@ import android.widget.Toast;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 
-public class MainActivity extends AppCompatActivity  implements View.OnClickListener {
+public class MainActivity extends AppCompatActivity implements View.OnClickListener {
     //Firebase Variables
     private FirebaseAuth mAuth;
     private ProgressBar progressBar;
