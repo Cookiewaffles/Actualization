@@ -10,10 +10,19 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Actualization">
         <activity
+            android:name=".Business_CreateStoreFront"
+            android:exported="true" />
+        <activity
+            android:name=".Business_ProfilePage"
+            android:exported="true" />
+        <activity
+            android:name=".Client_Scheduler"
+            android:exported="true" />
+        <activity
             android:name=".ForgotenPass"
             android:exported="true" />
         <activity
-            android:name=".ProfilePage"
+            android:name=".Client_ProfilePage"
             android:exported="true" />
         <activity
             android:name=".Register"

@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "860349166722",
+    "project_id": "actualization-ad859",
+    "storage_bucket": "actualization-ad859.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:860349166722:android:1d962818d38cebb6a2709b",
+        "android_client_info": {
+          "package_name": "com.example.actualization"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "860349166722-9l8m86k0uj3a5u3vlbiuor2bc14s2guv.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCAphBUUYAPWuiw0f742OJ97s8ebfF8oaQ"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "860349166722-9l8m86k0uj3a5u3vlbiuor2bc14s2guv.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
