@@ -10,6 +10,21 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Actualization">
         <activity
+            android:name=".Client_Settings"
+            android:exported="true" />
+        <activity
+            android:name=".Client_Payment"
+            android:exported="true" />
+        <activity
+            android:name=".Client_ViewAppointment"
+            android:exported="true" />
+        <activity
+            android:name=".Client_CreateAppointment"
+            android:exported="true" />
+        <activity
+            android:name=".Client_Personal"
+            android:exported="true" />
+        <activity
             android:name=".Business_Settings"
             android:exported="true" />
         <activity
@@ -23,9 +38,6 @@
             android:exported="true" />
         <activity
             android:name=".Business_ProfilePage"
-            android:exported="true" />
-        <activity
-            android:name=".Client_Scheduler"
             android:exported="true" />
         <activity
             android:name=".ForgotenPass"

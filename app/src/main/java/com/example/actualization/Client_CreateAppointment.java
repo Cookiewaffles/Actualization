@@ -4,11 +4,11 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
 
-public class Client_Scheduler extends AppCompatActivity {
+public class Client_CreateAppointment extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_client_scheduler);
+        setContentView(R.layout.activity_client_create_appointment);
     }
 }
