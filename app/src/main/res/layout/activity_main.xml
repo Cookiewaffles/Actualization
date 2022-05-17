@@ -22,7 +22,7 @@
         android:id="@+id/userName"
         android:layout_width="281dp"
         android:layout_height="39dp"
-        android:layout_marginTop="96dp"
+        android:layout_marginTop="36dp"
         android:autofillHints="Walter White"
         android:backgroundTint="@color/purple_200"
         android:ems="10"
@@ -38,7 +38,7 @@
         android:id="@+id/Password"
         android:layout_width="281dp"
         android:layout_height="39dp"
-        android:layout_marginTop="80dp"
+        android:layout_marginTop="48dp"
         android:autofillHints="Walter White"
         android:backgroundTint="@color/purple_200"
         android:ems="10"
@@ -73,8 +73,7 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/Password"
-        app:layout_constraintVertical_bias="0.846" />
+        app:layout_constraintTop_toBottomOf="@+id/radioGroup" />
 
     <TextView
         android:id="@+id/txtRegister"
@@ -103,5 +102,30 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/btnLogin"
         app:layout_constraintVertical_bias="0.0" />
+
+    <RadioGroup
+        android:id="@+id/radioGroup"
+        android:layout_width="261dp"
+        android:layout_height="0dp"
+        android:layout_marginTop="40dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/Password">
+
+        <RadioButton
+            android:id="@+id/rbClient"
+            android:layout_width="match_parent"
+            android:layout_height="33dp"
+            android:checked="true"
+            android:text="Client User"
+            android:textColor="@color/white" />
+
+        <RadioButton
+            android:id="@+id/rbBusiness"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Business User"
+            android:textColor="@color/white" />
+    </RadioGroup>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

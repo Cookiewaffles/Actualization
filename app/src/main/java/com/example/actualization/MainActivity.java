@@ -11,6 +11,8 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ProgressBar;
+import android.widget.RadioButton;
+import android.widget.RadioGroup;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -27,6 +29,11 @@ public class MainActivity extends AppCompatActivity  implements View.OnClickList
     private TextView register;
     private TextView forgotten;
     private EditText editTextEmail, editTextPassword;
+
+    private RadioGroup radioGroup;
+    private RadioButton rbClient;
+    private RadioButton rbBusiness;
+    private boolean isBusiness = false;
 
     //Shared Preferences
     private SharedPreferences mPreferences;
@@ -51,6 +58,10 @@ public class MainActivity extends AppCompatActivity  implements View.OnClickList
         //that don't need on Click
         editTextEmail = findViewById(R.id.userName);
         editTextPassword = findViewById(R.id.Password);
+
+        radioGroup = findViewById(R.id.radioGroup);
+        rbClient = findViewById(R.id.rbClient);
+        rbBusiness = findViewById(R.id.rbBusiness);
 
         //FireBase Setting
         mAuth = FirebaseAuth.getInstance();
@@ -122,12 +133,24 @@ public class MainActivity extends AppCompatActivity  implements View.OnClickList
 
                 //if Email is verified
                 if(user.isEmailVerified()){
-                    //Take to Home Page
-                    startActivity(new Intent(MainActivity.this, Client_ProfilePage.class));
+                    int radioId = radioGroup.getCheckedRadioButtonId();
 
-                    //PopUp Stuff
-                    mEditor.putBoolean("DialogShow", true);
-                    mEditor.apply();
+                    if(radioId == rbBusiness.getId()) {
+                        //Take to Home Page
+                        startActivity(new Intent(MainActivity.this, Business_ProfilePage.class));
+
+                        //PopUp Stuff
+                        mEditor.putBoolean("DialogShow", true);
+                        mEditor.apply();
+                    }
+                    else{
+                        //Take to Home Page
+                        startActivity(new Intent(MainActivity.this, Client_ProfilePage.class));
+
+                        //PopUp Stuff
+                        mEditor.putBoolean("DialogShow", true);
+                        mEditor.apply();
+                    }
                 }
                 //if not
                 else {

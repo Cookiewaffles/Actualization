@@ -146,10 +146,8 @@ public class Register extends AppCompatActivity implements View.OnClickListener 
 
     public void radioButtons(){
         int radioId = radioGroup.getCheckedRadioButtonId();
-        radioButton = findViewById(radioId);
-        Toast.makeText(this,"" + radioButton.getId(), Toast.LENGTH_SHORT);
 
-        if(radioId == 1){
+        if(radioId == rbBusiness.getId()){
             isBusiness = true;
 
         }else{
