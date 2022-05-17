@@ -12,7 +12,7 @@
         android:id="@+id/appTitle"
         android:layout_width="295dp"
         android:layout_height="71dp"
-        android:layout_marginTop="72dp"
+        android:layout_marginTop="45dp"
         android:text="Actualization"
         android:textColor="@color/purple_200"
         android:textSize="48sp"
@@ -84,7 +84,6 @@
         android:id="@+id/registerbutton"
         android:layout_width="325dp"
         android:layout_height="57dp"
-        android:layout_marginTop="40dp"
         android:text="Register"
         android:textColor="@color/black"
         app:backgroundTint="@color/white"
@@ -92,8 +91,8 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/createpassword"
-        app:layout_constraintVertical_bias="0.0" />
+        app:layout_constraintTop_toBottomOf="@+id/radioGroup"
+        app:layout_constraintVertical_bias="0.294" />
 
     <EditText
         android:id="@+id/createpassword"
@@ -110,5 +109,30 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/createEmail" />
+
+    <RadioGroup
+        android:id="@+id/radioGroup"
+        android:layout_width="287dp"
+        android:layout_height="73dp"
+        android:layout_marginTop="20dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/createpassword">
+
+        <RadioButton
+            android:id="@+id/rbClient"
+            android:layout_width="match_parent"
+            android:layout_height="33dp"
+            android:checked="true"
+            android:text="Client User"
+            android:textColor="@color/white" />
+
+        <RadioButton
+            android:id="@+id/rbBusiness"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Business User"
+            android:textColor="@color/white" />
+    </RadioGroup>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

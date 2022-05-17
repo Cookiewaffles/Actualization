@@ -10,28 +10,10 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Actualization">
         <activity
-            android:name=".EventDetailPage"
-            android:exported="true" />
-        <activity
-            android:name=".ForgotPassword"
-            android:exported="true" />
-        <activity
-            android:name=".BusinessDatabase"
-            android:exported="true" />
-        <activity
-            android:name=".AppointmentSampleCreatePage"
-            android:exported="true" />
-        <activity
-            android:name=".AppointmentCustomCreatePage"
-            android:exported="true" />
-        <activity
-            android:name=".BookingPage"
+            android:name=".ForgotenPass"
             android:exported="true" />
         <activity
             android:name=".ProfilePage"
-            android:exported="true" />
-        <activity
-            android:name=".MainSchedulePage"
             android:exported="true" />
         <activity
             android:name=".Register"

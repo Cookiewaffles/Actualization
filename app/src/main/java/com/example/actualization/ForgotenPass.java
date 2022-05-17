@@ -4,11 +4,11 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
 
-public class BusinessDatabase extends AppCompatActivity {
+public class ForgotenPass extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_business_database);
+        setContentView(R.layout.activity_forgoten_pass);
     }
 }
