@@ -6,18 +6,15 @@ public class User {
     public String username;
     public String email;
     public String userID;
-    public boolean isBusiness;
 
     public User(){
 
     }
 
-    public User(String realName, String username, String email, boolean isBusiness){
+    public User(String realName, String username, String email){
         this.realName = realName;
         this.username = username;
         this.email = email;
-        this.userID = "fake";
-        this.isBusiness = isBusiness;
     }
 
     public String getRealName() {
@@ -48,7 +45,4 @@ public class User {
 
     public void setUserID(String userID) { this.userID = userID; }
 
-    public boolean getIsBusiness() { return isBusiness; }
-
-    public void setIsBusiness(boolean isBusiness) { this.isBusiness = isBusiness; }
 }

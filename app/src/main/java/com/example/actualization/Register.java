@@ -1,5 +1,6 @@
 package com.example.actualization;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
@@ -14,7 +15,11 @@ import android.widget.RadioGroup;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.FirebaseDatabase;
 
 public class Register extends AppCompatActivity implements View.OnClickListener  {
@@ -113,33 +118,37 @@ public class Register extends AppCompatActivity implements View.OnClickListener 
             return;
         }
 
-        radioButtons();
-
         progressBar.setVisibility(View.VISIBLE);
         mAuth.createUserWithEmailAndPassword(email, password)
-                .addOnCompleteListener(task -> {
+                .addOnCompleteListener(new OnCompleteListener<AuthResult>() {
+                    @Override
+                    public void onComplete(@NonNull Task<AuthResult> task) {
+                        if(task.isSuccessful()){
+                            User user = new User(name, username, email);
 
-                    if(task.isSuccessful()) {
-                        User user = new User(name, username, email, isBusiness);
+                            FirebaseDatabase.getInstance().getReference("Users")
+                                    .child(FirebaseAuth.getInstance().getCurrentUser().getUid())
+                                    .setValue(user).addOnCompleteListener(new OnCompleteListener<Void>() {
+                                @Override
+                                public void onComplete(@NonNull Task<Void> task) {
+                                    if(task.isSuccessful()){
+                                        Toast.makeText(Register.this, "Registration Successful, Check Email to Verify", Toast.LENGTH_LONG).show();
+                                        progressBar.setVisibility(View.GONE);
 
-                        FirebaseDatabase.getInstance().getReference("Users")
-                                .child(FirebaseAuth.getInstance().getCurrentUser().getUid())
-                                .setValue(user).addOnCompleteListener(task1 -> {
+                                        FirebaseUser userVerify = FirebaseAuth.getInstance().getCurrentUser();
+                                        userVerify.sendEmailVerification();
 
-                            if (task1.isSuccessful()) {
-                                Toast.makeText(Register.this, "Account Created!", Toast.LENGTH_SHORT).show();
-                                FirebaseDatabase.getInstance().getReference("Users").child(FirebaseAuth.getInstance().getCurrentUser().getUid()).child("userID").setValue(FirebaseAuth.getInstance().getCurrentUser().getUid());
-                                progressBar.setVisibility(View.GONE);
-                                finish();
-                                //back to login!
-                            } else {
-                                Toast.makeText(Register.this, "Register Failed. Please try again.", Toast.LENGTH_SHORT).show();
-                                progressBar.setVisibility((View.GONE));
-                            }
-                        });
-                    }else{
-                        Toast.makeText(Register.this, "Registration Failed.", Toast.LENGTH_SHORT).show();
-                        progressBar.setVisibility((View.GONE));
+
+                                    }else{
+                                        Toast.makeText(Register.this, "Registration Failed", Toast.LENGTH_LONG).show();
+                                       progressBar.setVisibility(View.GONE);
+                                    }
+                                }
+                            });
+                        }else{
+                            Toast.makeText(Register.this, "Registration Failed", Toast.LENGTH_LONG).show();
+                            progressBar.setVisibility(View.GONE);
+                        }
                     }
                 });
     }

@@ -1,5 +1,6 @@
 package com.example.actualization;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Context;
@@ -16,6 +17,9 @@ import android.widget.RadioGroup;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 
@@ -123,47 +127,28 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             return;
         }
 
+        progressBar.setVisibility(View.VISIBLE);
+
         //attempts to Sign User if Previous Info Passes
-        mAuth.signInWithEmailAndPassword(email, password).addOnCompleteListener(task -> {
-            if (task.isSuccessful()){
-                //create User Instance Variable
-                FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+        mAuth.signInWithEmailAndPassword(email, password).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
+            @Override
+            public void onComplete(@NonNull Task<AuthResult> task) {
+                if(task.isSuccessful()){
+                    FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
 
-                assert user != null;
-
-                //if Email is verified
-                if(user.isEmailVerified()){
-                    int radioId = radioGroup.getCheckedRadioButtonId();
-
-                    if(radioId == rbBusiness.getId()) {
-                        //Take to Home Page
-                        startActivity(new Intent(MainActivity.this, Business_ProfilePage.class));
-
-                        //PopUp Stuff
-                        mEditor.putBoolean("DialogShow", true);
-                        mEditor.apply();
-                    }
-                    else{
-                        //Take to Home Page
+                    //check if verified
+                    if(user.isEmailVerified()) {
+                        //redirect to correct profile
                         startActivity(new Intent(MainActivity.this, Client_ProfilePage.class));
-
-                        //PopUp Stuff
-                        mEditor.putBoolean("DialogShow", true);
-                        mEditor.apply();
+                    }else{
+                        user.sendEmailVerification();
+                        Toast.makeText(MainActivity.this, "Check Email to verify account!", Toast.LENGTH_LONG).show();
+                        progressBar.setVisibility(View.GONE);
                     }
-                }
-                //if not
-                else {
-                    //send Verification Email
-                    user.sendEmailVerification();
+                }else{
+                    Toast.makeText(MainActivity.this, "Login Failed", Toast.LENGTH_LONG).show();
                     progressBar.setVisibility(View.GONE);
-                    Toast.makeText(MainActivity.this, "Email verification sent, please confirm email", Toast.LENGTH_LONG).show();
                 }
-            }
-            //if attempt fails
-            else{
-                progressBar.setVisibility(View.GONE);
-                Toast.makeText(MainActivity.this,"Invalid Input, Try Again", Toast.LENGTH_LONG).show();
             }
         });
     }
