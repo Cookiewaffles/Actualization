@@ -8,12 +8,8 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
-//import com.google.firebase.auth.FirebaseAuth;
-//import com.google.firebase.auth.FirebaseUser;
-//import com.google.firebase.database.DatabaseReference;
-//import com.google.firebase.database.FirebaseDatabase;
-//import com.google.firebase.storage.FirebaseStorage;
-//import com.google.firebase.storage.StorageReference;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 
 public class Business_ProfilePage extends AppCompatActivity implements View.OnClickListener{
 
@@ -23,10 +19,7 @@ public class Business_ProfilePage extends AppCompatActivity implements View.OnCl
     private Button settings;
     private Button logout;
 
-    //private FirebaseUser user;
-   // private FirebaseStorage storage;
-    //private StorageReference storagereference;
-    //private DatabaseReference reference;
+    private FirebaseUser user;
     private String userID;
 
     @Override
@@ -36,11 +29,8 @@ public class Business_ProfilePage extends AppCompatActivity implements View.OnCl
 
 
         //get user info
-        //user = FirebaseAuth.getInstance().getCurrentUser();
-       // reference = FirebaseDatabase.getInstance().getReference("Users");
-        //userID = user.getUid();
-       // storage = FirebaseStorage.getInstance();
-       // storagereference = storage.getReference();
+        user = FirebaseAuth.getInstance().getCurrentUser();
+        userID = user.getUid();
 
 
         //change details on page to that of user (may need to add more info)
@@ -60,7 +50,7 @@ public class Business_ProfilePage extends AppCompatActivity implements View.OnCl
         settings = findViewById(R.id.usersettings3);
         settings.setOnClickListener(this);
 
-        logout = findViewById(R.id.logout3);
+        logout = findViewById(R.id.Business_Logout);
         logout.setOnClickListener(this);
     }
 
@@ -84,7 +74,7 @@ public class Business_ProfilePage extends AppCompatActivity implements View.OnCl
                 //Brings user to Settings Page
                 startActivity(new Intent(this, Business_Settings.class));
                 break;
-            case R.id.logout3:
+            case R.id.Business_Logout:
                 //Log out User
                 Logout();
                 break;
@@ -92,12 +82,7 @@ public class Business_ProfilePage extends AppCompatActivity implements View.OnCl
     }
 
     public void Logout(){
-        //logout user
-        //logout.setOnClickListener(v1 -> {
-           // FirebaseAuth.getInstance().signOut();
-          //  startActivity(new Intent(Business_ProfilePage.this, MainActivity.class));
-          //  Business_ProfilePage.this.finish();
-       // });
-
+        FirebaseAuth.getInstance().signOut();
+        startActivity(new Intent(Business_ProfilePage.this, MainActivity.class));
     }
 }
