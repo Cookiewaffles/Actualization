@@ -1,33 +1,33 @@
 {
   "project_info": {
-    "project_number": "936258009195",
-    "project_id": "actualization-da732",
-    "storage_bucket": "actualization-da732.appspot.com"
+    "project_number": "602747083938",
+    "project_id": "actualization2-25078",
+    "storage_bucket": "actualization2-25078.appspot.com"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:936258009195:android:711f859fceb22a7d72d92e",
+        "mobilesdk_app_id": "1:602747083938:android:efa37e688448031bbb8bfb",
         "android_client_info": {
           "package_name": "com.example.actualization"
         }
       },
       "oauth_client": [
         {
-          "client_id": "936258009195-nq6r4gnolad8l3vebk748ftkeqe19tc7.apps.googleusercontent.com",
+          "client_id": "602747083938-gm2s1h4oqmrku29aio8fo0udkfk4esq9.apps.googleusercontent.com",
           "client_type": 3
         }
       ],
       "api_key": [
         {
-          "current_key": "AIzaSyCUf6COzJwBfYzRcJ97S6uvk_eT0bgWTo8"
+          "current_key": "AIzaSyCSv8wqUD2ZqgibJn1w6StyP9Ddv2J-kxc"
         }
       ],
       "services": {
         "appinvite_service": {
           "other_platform_oauth_client": [
             {
-              "client_id": "936258009195-nq6r4gnolad8l3vebk748ftkeqe19tc7.apps.googleusercontent.com",
+              "client_id": "602747083938-gm2s1h4oqmrku29aio8fo0udkfk4esq9.apps.googleusercontent.com",
               "client_type": 3
             }
           ]

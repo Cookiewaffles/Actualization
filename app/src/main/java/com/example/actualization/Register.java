@@ -28,10 +28,8 @@ public class Register extends AppCompatActivity implements View.OnClickListener 
     private TextView title;
 
     private RadioGroup radioGroup;
-    private RadioButton radioButton;
-    private RadioButton rbClient;
     private RadioButton rbBusiness;
-    private boolean isBusiness = false;
+    private String isBusiness;
 
     private EditText editTextName, editTextUsername, editTextEmail, editTextPassword;
     private ProgressBar progressBar;
@@ -55,9 +53,7 @@ public class Register extends AppCompatActivity implements View.OnClickListener 
         editTextPassword = findViewById(R.id.createpassword);
 
         radioGroup = findViewById(R.id.radioGroup);
-        rbClient = findViewById(R.id.rbClient);
         rbBusiness = findViewById(R.id.rbBusiness);
-
 
         progressBar = findViewById(R.id.progressBar2);
 
@@ -86,6 +82,8 @@ public class Register extends AppCompatActivity implements View.OnClickListener 
         String password = editTextPassword.getText().toString().trim();
         String name = editTextName.getText().toString().trim();
         String username = editTextUsername.getText().toString().trim();
+
+        radioButtons();
 
         if(name.isEmpty()){
             editTextName.setError("Name is Missing");
@@ -124,7 +122,7 @@ public class Register extends AppCompatActivity implements View.OnClickListener 
                     @Override
                     public void onComplete(@NonNull Task<AuthResult> task) {
                         if(task.isSuccessful()){
-                            User user = new User(name, username, email);
+                            User user = new User(name, username, email, isBusiness);
 
                             FirebaseDatabase.getInstance().getReference("Users")
                                     .child(FirebaseAuth.getInstance().getCurrentUser().getUid())
@@ -140,13 +138,13 @@ public class Register extends AppCompatActivity implements View.OnClickListener 
 
 
                                     }else{
-                                        Toast.makeText(Register.this, "Registration Failed", Toast.LENGTH_LONG).show();
+                                        Toast.makeText(Register.this, "Registration Failed at Task", Toast.LENGTH_LONG).show();
                                        progressBar.setVisibility(View.GONE);
                                     }
                                 }
                             });
                         }else{
-                            Toast.makeText(Register.this, "Registration Failed", Toast.LENGTH_LONG).show();
+                            Toast.makeText(Register.this, "Registration Failed at User", Toast.LENGTH_LONG).show();
                             progressBar.setVisibility(View.GONE);
                         }
                     }
@@ -157,10 +155,10 @@ public class Register extends AppCompatActivity implements View.OnClickListener 
         int radioId = radioGroup.getCheckedRadioButtonId();
 
         if(radioId == rbBusiness.getId()){
-            isBusiness = true;
+            isBusiness = "true";
 
         }else{
-            isBusiness = false;
+            isBusiness = "false";
         }
     }
 }

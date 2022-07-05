@@ -22,6 +22,11 @@ import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener {
     //Firebase Variables
@@ -29,6 +34,9 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     private ProgressBar progressBar;
 
     //User Interface Variables
+    User user1;
+    String buis;
+
     private Button login;
     private TextView register;
     private TextView forgotten;
@@ -136,10 +144,34 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 if(task.isSuccessful()){
                     FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
 
+                    DatabaseReference ref = FirebaseDatabase.getInstance().getReference().child("Users");
+
+                    ref.addValueEventListener(new ValueEventListener() {
+                        @Override
+                        public void onDataChange(@NonNull DataSnapshot snapshot) {
+                            for(DataSnapshot snap : snapshot.getChildren()) {
+                                user1 = snap.getValue(User.class);
+                                buis = user1.getIsBuisness();
+                            }
+                        }
+
+                        @Override
+                        public void onCancelled(@NonNull DatabaseError error) {
+                            throw error.toException();
+                        }
+                    });
+
+
+
                     //check if verified
                     if(user.isEmailVerified()) {
                         //redirect to correct profile
-                        startActivity(new Intent(MainActivity.this, Business_ProfilePage.class));
+                        if(user1.getIsBuisness() == "false") {
+                            startActivity(new Intent(MainActivity.this, Client_ProfilePage.class));
+                        }
+                        if (user1.getIsBuisness() == "true"){
+                            startActivity(new Intent(MainActivity.this, Business_ProfilePage.class));
+                        }
                     }else{
                         user.sendEmailVerification();
                         Toast.makeText(MainActivity.this, "Check Email to verify account!", Toast.LENGTH_LONG).show();

@@ -22,11 +22,11 @@
         android:id="@+id/userName"
         android:layout_width="281dp"
         android:layout_height="39dp"
-        android:layout_marginTop="36dp"
+        android:layout_marginTop="76dp"
         android:autofillHints="Walter White"
         android:backgroundTint="@color/purple_200"
         android:ems="10"
-        android:hint="UserName"
+        android:hint="Email"
         android:inputType="textPersonName"
         android:textColor="@color/white"
         android:textColorHint="#737373"
@@ -38,7 +38,7 @@
         android:id="@+id/Password"
         android:layout_width="281dp"
         android:layout_height="39dp"
-        android:layout_marginTop="48dp"
+        android:layout_marginTop="88dp"
         android:autofillHints="Walter White"
         android:backgroundTint="@color/purple_200"
         android:ems="10"
@@ -110,22 +110,6 @@
         android:layout_marginTop="40dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/Password">
-
-        <RadioButton
-            android:id="@+id/rbClient"
-            android:layout_width="match_parent"
-            android:layout_height="33dp"
-            android:checked="true"
-            android:text="Client User"
-            android:textColor="@color/white" />
-
-        <RadioButton
-            android:id="@+id/rbBusiness"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Business User"
-            android:textColor="@color/white" />
-    </RadioGroup>
+        app:layout_constraintTop_toBottomOf="@+id/Password"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
