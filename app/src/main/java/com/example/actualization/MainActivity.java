@@ -166,12 +166,16 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                     //check if verified
                     if(user.isEmailVerified()) {
                         //redirect to correct profile
-                        if(user1.getIsBuisness() == "false") {
-                            startActivity(new Intent(MainActivity.this, Client_ProfilePage.class));
-                        }
-                        if (user1.getIsBuisness() == "true"){
-                            startActivity(new Intent(MainActivity.this, Business_ProfilePage.class));
-                        }
+                        startActivity(new Intent(MainActivity.this, Client_ProfilePage.class));
+
+
+
+                        // if(user1.getIsBuisness() == "false") {
+                           // startActivity(new Intent(MainActivity.this, Client_ProfilePage.class));
+                        //}
+                        //if (user1.getIsBuisness() == "true"){
+                        //    startActivity(new Intent(MainActivity.this, Business_ProfilePage.class));
+                       // }
                     }else{
                         user.sendEmailVerification();
                         Toast.makeText(MainActivity.this, "Check Email to verify account!", Toast.LENGTH_LONG).show();
