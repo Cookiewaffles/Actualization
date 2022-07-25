@@ -4,6 +4,124 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/black"
     tools:context=".Client_CreateAppointment">
 
+    <Button
+        android:id="@+id/btnCreate"
+        android:layout_width="307dp"
+        android:layout_height="56dp"
+        android:layout_marginTop="28dp"
+        android:text="Create"
+        android:textColor="@color/black"
+        app:backgroundTint="@color/white"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/apptCost" />
+
+    <Button
+        android:id="@+id/btnCancel"
+        android:layout_width="307dp"
+        android:layout_height="56dp"
+        android:layout_marginTop="20dp"
+        android:text="Cancel"
+        android:textColor="@color/black"
+        app:backgroundTint="@color/white"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/btnCreate"
+        app:layout_constraintVertical_bias="0.076" />
+
+    <EditText
+        android:id="@+id/apptDate"
+        android:layout_width="281dp"
+        android:layout_height="39dp"
+        android:layout_marginTop="36dp"
+        android:autofillHints="Walter White"
+        android:backgroundTint="@color/purple_200"
+        android:ems="10"
+        android:hint="Date"
+        android:inputType="textPersonName"
+        android:textColor="@color/white"
+        android:textColorHint="#737373"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/ApptName" />
+
+    <EditText
+        android:id="@+id/apptTime"
+        android:layout_width="281dp"
+        android:layout_height="39dp"
+        android:layout_marginTop="36dp"
+        android:autofillHints="Walter White"
+        android:backgroundTint="@color/purple_200"
+        android:ems="10"
+        android:hint="Time"
+        android:inputType="textPersonName"
+        android:textColor="@color/white"
+        android:textColorHint="#737373"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/apptDate" />
+
+    <EditText
+        android:id="@+id/apptCost"
+        android:layout_width="281dp"
+        android:layout_height="39dp"
+        android:layout_marginTop="36dp"
+        android:autofillHints="Walter White"
+        android:backgroundTint="@color/purple_200"
+        android:ems="10"
+        android:hint="Cost"
+        android:inputType="textPersonName"
+        android:textColor="@color/white"
+        android:textColorHint="#737373"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/apptLocation" />
+
+    <EditText
+        android:id="@+id/apptLocation"
+        android:layout_width="281dp"
+        android:layout_height="39dp"
+        android:layout_marginTop="36dp"
+        android:autofillHints="Walter White"
+        android:backgroundTint="@color/purple_200"
+        android:ems="10"
+        android:hint="Location"
+        android:inputType="textPersonName"
+        android:textColor="@color/white"
+        android:textColorHint="#737373"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/apptTime" />
+
+    <EditText
+        android:id="@+id/ApptName"
+        android:layout_width="281dp"
+        android:layout_height="39dp"
+        android:layout_marginTop="56dp"
+        android:autofillHints="Walter White"
+        android:backgroundTint="@color/purple_200"
+        android:ems="10"
+        android:hint="Appointment Name"
+        android:inputType="textPersonName"
+        android:textColor="@color/white"
+        android:textColorHint="#737373"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/appTitle2" />
+
+    <TextView
+        android:id="@+id/appTitle2"
+        android:layout_width="295dp"
+        android:layout_height="71dp"
+        android:layout_marginTop="40dp"
+        android:text="Actualization"
+        android:textColor="@color/purple_200"
+        android:textSize="48sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 </androidx.constraintlayout.widget.ConstraintLayout>

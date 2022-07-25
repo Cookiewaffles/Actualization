@@ -5,14 +5,9 @@ public class Appointment {
     public String apptDate;
     public String apptTime;
     public String apptLocation;
-    public int apptCost;
+    public String apptCost;
 
-
-    public Appointment(){
-
-    }
-
-    public Appointment(String name, String date, String time, String location, int cost){
+    public Appointment(String name, String date, String time, String location, String cost){
         this.apptName = name;
         this.apptDate = date;
         this.apptTime = time;
@@ -48,10 +43,10 @@ public class Appointment {
         this.apptLocation = location;
     }
 
-    public int getCost() {
+    public String getCost() {
         return apptCost;
     }
-    public void setCost(int cost) {
+    public void setCost(String cost) {
         this.apptCost = cost;
     }
 }
