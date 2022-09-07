@@ -25,8 +25,12 @@
         <entry key="..\:/Users/Jacob/StudioProjects/Actualization/app/src/main/res/layout/activity_client_personal.xml" value="0.18206521739130435" />
         <entry key="..\:/Users/Jacob/StudioProjects/Actualization/app/src/main/res/layout/activity_client_profile_page.xml" value="0.36666666666666664" />
         <entry key="..\:/Users/Jacob/StudioProjects/Actualization/app/src/main/res/layout/activity_client_settings.xml" value="0.17831813576494426" />
+        <entry key="..\:/Users/Jacob/StudioProjects/Actualization/app/src/main/res/layout/activity_client_view_appointment.xml" value="0.36666666666666664" />
         <entry key="..\:/Users/Jacob/StudioProjects/Actualization/app/src/main/res/layout/activity_main.xml" value="0.36666666666666664" />
         <entry key="..\:/Users/Jacob/StudioProjects/Actualization/app/src/main/res/layout/activity_register.xml" value="0.36666666666666664" />
+        <entry key="..\:/Users/Jacob/StudioProjects/Actualization/app/src/main/res/layout/appt_list.xml" value="0.67" />
+        <entry key="..\:/Users/Jacob/StudioProjects/Actualization/app/src/main/res/layout/list_item.xml" value="0.27421875" />
+        <entry key="..\:/Users/Jacob/StudioProjects/Actualization/app/src/main/res/layout/list_itemss.xml" value="0.365625" />
       </map>
     </option>
   </component>
