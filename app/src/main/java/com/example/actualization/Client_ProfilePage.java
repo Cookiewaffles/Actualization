@@ -8,14 +8,10 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
-import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
-import com.google.firebase.database.DataSnapshot;
-import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
-import com.google.firebase.database.ValueEventListener;
 
 public class Client_ProfilePage extends AppCompatActivity implements View.OnClickListener {
     private Button personal;
@@ -44,7 +40,7 @@ public class Client_ProfilePage extends AppCompatActivity implements View.OnClic
         final TextView UserName = findViewById(R.id.Username);
 
         //set on click listeners
-        personal = findViewById(R.id.btnPersonal);
+        personal = findViewById(R.id.btnFindAppt);
         personal.setOnClickListener(this);
 
         createAppt = findViewById(R.id.btnCreateAppointment);
@@ -67,7 +63,7 @@ public class Client_ProfilePage extends AppCompatActivity implements View.OnClic
     @Override
     public void onClick(View v) {
         switch (v.getId()) {
-            case R.id.btnPersonal:
+            case R.id.btnFindAppt:
                 //Brings user to View Store Front
                 startActivity(new Intent(this, Client_Personal.class));
                 break;
