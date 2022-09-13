@@ -5,14 +5,14 @@ public class User {
     public String realName;
     public String username;
     public String email;
-    public String isBuisness;
+    public Boolean isBuisness;
     public String userID;
 
     public User(){
 
     }
 
-    public User(String realName, String username, String email, String isBuisness){
+    public User(String realName, String username, String email, Boolean isBuisness){
         this.realName = realName;
         this.username = username;
         this.email = email;
@@ -47,8 +47,8 @@ public class User {
 
     public void setUserID(String userID) { this.userID = userID; }
 
-    public String getIsBuisness() { return isBuisness; }
+    public Boolean getIsBuisness() { return isBuisness; }
 
-    public void setIsBuisness(String isBuisness) { this.isBuisness = isBuisness; }
+    public void setIsBuisness(Boolean isBuisness) { this.isBuisness = isBuisness; }
 
 }

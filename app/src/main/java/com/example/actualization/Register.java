@@ -29,7 +29,7 @@ public class Register extends AppCompatActivity implements View.OnClickListener 
 
     private RadioGroup radioGroup;
     private RadioButton rbBusiness;
-    private String isBusiness;
+    private Boolean isBusiness;
 
     private EditText editTextName, editTextUsername, editTextEmail, editTextPassword;
     private ProgressBar progressBar;
@@ -155,10 +155,10 @@ public class Register extends AppCompatActivity implements View.OnClickListener 
         int radioId = radioGroup.getCheckedRadioButtonId();
 
         if(radioId == rbBusiness.getId()){
-            isBusiness = "true";
+            isBusiness = true;
 
         }else{
-            isBusiness = "false";
+            isBusiness = false ;
         }
     }
 }

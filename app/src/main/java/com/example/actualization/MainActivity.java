@@ -35,7 +35,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
     //User Interface Variables
     User user1;
-    String buis;
 
     private Button login;
     private TextView register;
@@ -136,7 +135,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         }
 
         progressBar.setVisibility(View.VISIBLE);
-
         //attempts to Sign User if Previous Info Passes
         mAuth.signInWithEmailAndPassword(email, password).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
             @Override
@@ -150,8 +148,23 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                         @Override
                         public void onDataChange(@NonNull DataSnapshot snapshot) {
                             for(DataSnapshot snap : snapshot.getChildren()) {
-                                user1 = snap.getValue(User.class);
-                                buis = user1.getIsBuisness();
+                                Boolean buisness = (Boolean) (snap.child("isBuisness").getValue());
+
+                                //check if verified
+                                if(user.isEmailVerified()) {
+                                    //redirect to correct profile
+                                    if(buisness == false){
+                                        startActivity(new Intent(MainActivity.this, Client_ProfilePage.class));
+
+                                    }else if(buisness == true){
+                                        startActivity(new Intent(MainActivity.this, Business_ProfilePage.class));
+                                    }
+
+                                }else{
+                                    user.sendEmailVerification();
+                                    Toast.makeText(MainActivity.this, "Check Email to verify account!", Toast.LENGTH_LONG).show();
+                                    progressBar.setVisibility(View.GONE);
+                                }
                             }
                         }
 
@@ -160,27 +173,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                             throw error.toException();
                         }
                     });
-
-
-
-                    //check if verified
-                    if(user.isEmailVerified()) {
-                        //redirect to correct profile
-                        startActivity(new Intent(MainActivity.this, Client_ProfilePage.class));
-
-
-
-                        // if(user1.getIsBuisness() == "false") {
-                           // startActivity(new Intent(MainActivity.this, Client_ProfilePage.class));
-                        //}
-                        //if (user1.getIsBuisness() == "true"){
-                        //    startActivity(new Intent(MainActivity.this, Business_ProfilePage.class));
-                       // }
-                    }else{
-                        user.sendEmailVerification();
-                        Toast.makeText(MainActivity.this, "Check Email to verify account!", Toast.LENGTH_LONG).show();
-                        progressBar.setVisibility(View.GONE);
-                    }
                 }else{
                     Toast.makeText(MainActivity.this, "Login Failed", Toast.LENGTH_LONG).show();
                     progressBar.setVisibility(View.GONE);
