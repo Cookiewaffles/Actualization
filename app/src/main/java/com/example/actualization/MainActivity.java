@@ -142,13 +142,12 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 if(task.isSuccessful()){
                     FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
 
-                    DatabaseReference ref = FirebaseDatabase.getInstance().getReference().child("Users");
+                    DatabaseReference ref = FirebaseDatabase.getInstance().getReference().child("Users").child(FirebaseAuth.getInstance().getCurrentUser().getUid());
 
                     ref.addValueEventListener(new ValueEventListener() {
                         @Override
                         public void onDataChange(@NonNull DataSnapshot snapshot) {
-                            for(DataSnapshot snap : snapshot.getChildren()) {
-                                Boolean buisness = (Boolean) (snap.child("isBuisness").getValue());
+                                Boolean buisness = (Boolean) (snapshot.child("isBuisness").getValue());
 
                                 //check if verified
                                 if(user.isEmailVerified()) {
@@ -165,7 +164,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                                     Toast.makeText(MainActivity.this, "Check Email to verify account!", Toast.LENGTH_LONG).show();
                                     progressBar.setVisibility(View.GONE);
                                 }
-                            }
                         }
 
                         @Override
