@@ -58,8 +58,6 @@ public class Business_ViewStorePage extends AppCompatActivity {
 
     public void StoreInformation(){
 
-        HashMap<String, String> nameAddresses = new HashMap<>();
-
         DatabaseReference reference = FirebaseDatabase.getInstance().getReference("Users").child(FirebaseAuth.getInstance().getCurrentUser().getUid()).child("Store Info");
 
         reference.addValueEventListener(new ValueEventListener() {
