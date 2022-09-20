@@ -1,12 +1,15 @@
 package com.example.actualization;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
+import android.widget.Button;
 import android.widget.ListView;
 import android.widget.SimpleAdapter;
 import android.widget.Toast;
@@ -26,6 +29,11 @@ import java.util.Map;
 
 public class Client_Personal extends AppCompatActivity {
     private ListView lv;
+
+    private AlertDialog.Builder dialogBuilder;
+    private AlertDialog dialog;
+
+    Button buisAdd, buisCancel;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -78,13 +86,35 @@ public class Client_Personal extends AppCompatActivity {
         });
 
 
-        lv.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            @Override
-            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-                Toast.makeText(Client_Personal.this, listItems.get(i).get("Second Line").toString(), Toast.LENGTH_LONG).show();
+       lv.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+           @Override
+           public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+               dialogBuilder = new AlertDialog.Builder(Client_Personal.this);
+               final View contact = getLayoutInflater().inflate(R.layout.popup, null);
 
-                listItems.get(i).get("Second Line").toString();
-            }
-        });
+               buisAdd = contact.findViewById(R.id.btnAdd);
+               buisCancel = contact.findViewById(R.id.btnCancel2);
+
+                dialogBuilder.setView(contact);
+                dialog = dialogBuilder.create();
+                dialog.show();
+
+                buisAdd.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        dialog.dismiss();
+
+                    }
+                });
+
+               buisCancel.setOnClickListener(new View.OnClickListener() {
+                   @Override
+                   public void onClick(View view) {
+                       dialog.dismiss();
+                   }
+               });
+
+           }
+       });
     }
 }
