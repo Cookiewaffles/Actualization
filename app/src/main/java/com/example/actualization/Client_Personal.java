@@ -12,6 +12,7 @@ import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.ListView;
 import android.widget.SimpleAdapter;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.firebase.auth.FirebaseAuth;
@@ -33,6 +34,7 @@ public class Client_Personal extends AppCompatActivity {
     private AlertDialog.Builder dialogBuilder;
     private AlertDialog dialog;
 
+    TextView buisName, buisDesc;
     Button buisAdd, buisCancel;
 
     @Override
@@ -92,20 +94,44 @@ public class Client_Personal extends AppCompatActivity {
                dialogBuilder = new AlertDialog.Builder(Client_Personal.this);
                final View contact = getLayoutInflater().inflate(R.layout.popup, null);
 
+               buisName = contact.findViewById(R.id.txtBuisName);
+               buisName = contact.findViewById(R.id.txtBuisDesc);
+
                buisAdd = contact.findViewById(R.id.btnAdd);
                buisCancel = contact.findViewById(R.id.btnCancel2);
 
-                dialogBuilder.setView(contact);
-                dialog = dialogBuilder.create();
-                dialog.show();
+               String id = listItems.get(i).get("Second Line").toString().trim();
 
-                buisAdd.setOnClickListener(new View.OnClickListener() {
+               Toast.makeText(Client_Personal.this, id, Toast.LENGTH_LONG).show();
+
+               DatabaseReference mRef = FirebaseDatabase.getInstance().getReference("Users").child(id).child("Store Info");
+               mRef.addValueEventListener(new ValueEventListener() {
+                   @Override
+                   public void onDataChange(@NonNull DataSnapshot snapshot) {
+                       //String name = snapshot.child("name").getValue().toString();
+                       //String desc = snapshot.child("desc").getValue().toString();
+
+                      // buisName.setText(name);
+                      // buisDesc.setText(desc);
+                   }
+
+                   @Override
+                   public void onCancelled(@NonNull DatabaseError error) {
+                   }
+               });
+
+
+               dialogBuilder.setView(contact);
+               dialog = dialogBuilder.create();
+               dialog.show();
+
+               buisAdd.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {
                         dialog.dismiss();
 
                     }
-                });
+               });
 
                buisCancel.setOnClickListener(new View.OnClickListener() {
                    @Override
