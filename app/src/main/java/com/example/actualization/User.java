@@ -6,6 +6,7 @@ public class User {
     public String username;
     public String email;
     public Boolean isBuisness;
+    public String id;
     public String userID;
 
     public User(){
@@ -17,6 +18,14 @@ public class User {
         this.username = username;
         this.email = email;
         this.isBuisness = isBuisness;
+    }
+
+    public User(String realName, String username, String email, Boolean isBuisness, String id){
+        this.realName = realName;
+        this.username = username;
+        this.email = email;
+        this.isBuisness = isBuisness;
+        this.id = id;
     }
 
     public String getRealName() {
@@ -50,5 +59,14 @@ public class User {
     public Boolean getIsBuisness() { return isBuisness; }
 
     public void setIsBuisness(Boolean isBuisness) { this.isBuisness = isBuisness; }
+
+
+    public String getID() {
+        return id;
+    }
+
+    public void setID(String id) {
+        this.id = id;
+    }
 
 }

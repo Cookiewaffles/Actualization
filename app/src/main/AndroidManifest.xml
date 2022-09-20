@@ -10,6 +10,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Actualization">
         <activity
+            android:name=".Client_Business_Store_Page"
+            android:exported="false" />
+        <activity
             android:name=".Client_Settings"
             android:exported="true" />
         <activity
