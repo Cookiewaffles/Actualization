@@ -9,9 +9,11 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ListView;
 import android.widget.SimpleAdapter;
+import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -34,8 +36,18 @@ public class Client_Personal extends AppCompatActivity {
     private AlertDialog.Builder dialogBuilder;
     private AlertDialog dialog;
 
+    private Spinner spinAppt;
+    List<String> list;
+    ArrayAdapter<String> adapter;
+
     TextView buisName, buisDesc;
     Button buisAdd, buisCancel;
+    Spinner spinner;
+
+
+    String name = "";
+    String desc = "";
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -95,24 +107,51 @@ public class Client_Personal extends AppCompatActivity {
                final View contact = getLayoutInflater().inflate(R.layout.popup, null);
 
                buisName = contact.findViewById(R.id.txtBuisName);
-               buisName = contact.findViewById(R.id.txtBuisDesc);
+               buisDesc = contact.findViewById(R.id.txtBuisDesc);
+               spinner = contact.findViewById(R.id.spinAppointment2);
+
+               list=new ArrayList<>();
 
                buisAdd = contact.findViewById(R.id.btnAdd);
                buisCancel = contact.findViewById(R.id.btnCancel2);
 
+
                String id = listItems.get(i).get("Second Line").toString().trim();
 
-               Toast.makeText(Client_Personal.this, id, Toast.LENGTH_LONG).show();
-
-               DatabaseReference mRef = FirebaseDatabase.getInstance().getReference("Users").child(id).child("Store Info");
+               DatabaseReference mRef = FirebaseDatabase.getInstance().getReference("Users").child(id);
                mRef.addValueEventListener(new ValueEventListener() {
                    @Override
                    public void onDataChange(@NonNull DataSnapshot snapshot) {
-                       //String name = snapshot.child("name").getValue().toString();
-                       //String desc = snapshot.child("desc").getValue().toString();
+                       //Grab Store Information ---- Name and Description
+                       name = snapshot.child("Store Info").child("name").getValue().toString();
+                       desc = snapshot.child("Store Info").child("desc").getValue().toString();
 
-                      // buisName.setText(name);
-                      // buisDesc.setText(desc);
+                       //Grab Store Appointment Information ---- Appt Name and Times
+                       for(DataSnapshot snap: snapshot.child("Store Appointments").getChildren()) {
+
+
+                           String spinnerNames = "";
+                           spinnerNames = spinnerNames + snap.child("apptType").getValue().toString();
+                           spinnerNames = spinnerNames + "  -  @" + snap.child("apptTime").getValue().toString();
+
+
+                           list.add(spinnerNames);
+                       }
+
+                       ArrayAdapter<String> arrayAdp = new ArrayAdapter<>(Client_Personal.this, R.layout.support_simple_spinner_dropdown_item, list);
+                       arrayAdp.setDropDownViewResource(R.layout.support_simple_spinner_dropdown_item);
+
+
+                       dialogBuilder.setView(contact);
+                       dialog = dialogBuilder.create();
+
+
+                       buisName.setText(name);
+                       buisDesc.setText(desc);
+                       spinner.setAdapter(arrayAdp);
+
+
+                       dialog.show();
                    }
 
                    @Override
@@ -121,9 +160,8 @@ public class Client_Personal extends AppCompatActivity {
                });
 
 
-               dialogBuilder.setView(contact);
-               dialog = dialogBuilder.create();
-               dialog.show();
+
+
 
                buisAdd.setOnClickListener(new View.OnClickListener() {
                     @Override
