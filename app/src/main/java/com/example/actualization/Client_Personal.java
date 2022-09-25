@@ -38,16 +38,17 @@ public class Client_Personal extends AppCompatActivity {
 
     private Spinner spinAppt;
     List<String> list;
+    List<String> apptNames;
     ArrayAdapter<String> adapter;
 
-    TextView buisName, buisDesc;
+    TextView buisName, buisDesc, apptPopupDesc;
     Button buisAdd, buisCancel;
     Spinner spinner;
 
 
     String name = "";
     String desc = "";
-
+    String apptDesc = "";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -100,6 +101,7 @@ public class Client_Personal extends AppCompatActivity {
         });
 
 
+        //Display Popups with the correct information
        lv.setOnItemClickListener(new AdapterView.OnItemClickListener() {
            @Override
            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
@@ -109,8 +111,10 @@ public class Client_Personal extends AppCompatActivity {
                buisName = contact.findViewById(R.id.txtBuisName);
                buisDesc = contact.findViewById(R.id.txtBuisDesc);
                spinner = contact.findViewById(R.id.spinAppointment2);
+               apptPopupDesc = contact.findViewById(R.id.txtApptDescrption2);
 
-               list=new ArrayList<>();
+               list = new ArrayList<>();
+               apptNames = new ArrayList<>();
 
                buisAdd = contact.findViewById(R.id.btnAdd);
                buisCancel = contact.findViewById(R.id.btnCancel2);
@@ -118,6 +122,7 @@ public class Client_Personal extends AppCompatActivity {
 
                String id = listItems.get(i).get("Second Line").toString().trim();
 
+               //retrieve data from database for all fields
                DatabaseReference mRef = FirebaseDatabase.getInstance().getReference("Users").child(id);
                mRef.addValueEventListener(new ValueEventListener() {
                    @Override
@@ -126,21 +131,32 @@ public class Client_Personal extends AppCompatActivity {
                        name = snapshot.child("Store Info").child("name").getValue().toString();
                        desc = snapshot.child("Store Info").child("desc").getValue().toString();
 
+
                        //Grab Store Appointment Information ---- Appt Name and Times
                        for(DataSnapshot snap: snapshot.child("Store Appointments").getChildren()) {
-
-
                            String spinnerNames = "";
-                           spinnerNames = spinnerNames + snap.child("apptType").getValue().toString();
-                           spinnerNames = spinnerNames + "  -  @" + snap.child("apptTime").getValue().toString();
 
+                           spinnerNames = spinnerNames + snap.child("apptType").getValue().toString();
+
+                           spinnerNames = spinnerNames + "  -  @" + snap.child("apptTime").getValue().toString();
 
                            list.add(spinnerNames);
                        }
 
+                       //Grab Store Appointment Information ---- Appt Name and Times
+                       for(DataSnapshot snap: snapshot.child("Store Appointments").getChildren()) {
+                           String listNames = "";
+
+                           listNames = listNames + snap.child("apptType").getValue().toString();
+
+                           apptNames.add(listNames);
+                       }
+
+
                        ArrayAdapter<String> arrayAdp = new ArrayAdapter<>(Client_Personal.this, R.layout.support_simple_spinner_dropdown_item, list);
                        arrayAdp.setDropDownViewResource(R.layout.support_simple_spinner_dropdown_item);
 
+                       apptDesc = snapshot.child("Store Appointments").child(apptNames.get(0)).child("apptDesc").getValue().toString();
 
                        dialogBuilder.setView(contact);
                        dialog = dialogBuilder.create();
@@ -149,9 +165,25 @@ public class Client_Personal extends AppCompatActivity {
                        buisName.setText(name);
                        buisDesc.setText(desc);
                        spinner.setAdapter(arrayAdp);
+                       apptPopupDesc.setText(apptDesc);
 
 
                        dialog.show();
+
+
+                       spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+                           @Override
+                           public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
+                               apptDesc = snapshot.child("Store Appointments").child(apptNames.get(i)).child("apptDesc").getValue().toString();
+
+                               apptPopupDesc.setText(apptDesc);
+                           }
+
+                           @Override
+                           public void onNothingSelected(AdapterView<?> adapterView){
+
+                           }
+                       });
                    }
 
                    @Override
@@ -160,9 +192,7 @@ public class Client_Personal extends AppCompatActivity {
                });
 
 
-
-
-
+               //Removes Appointment from Buisness store page and adds appointments to Client appointment list
                buisAdd.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {
@@ -171,6 +201,7 @@ public class Client_Personal extends AppCompatActivity {
                     }
                });
 
+               //Dismiss The popup
                buisCancel.setOnClickListener(new View.OnClickListener() {
                    @Override
                    public void onClick(View view) {

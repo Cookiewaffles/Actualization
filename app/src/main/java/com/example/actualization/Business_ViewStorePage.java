@@ -6,6 +6,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.ListView;
@@ -29,9 +30,10 @@ import java.util.List;
 import java.util.Map;
 
 public class Business_ViewStorePage extends AppCompatActivity {
-    private TextView storeName, storeDescription;
+    private TextView storeName, storeDescription, apptDescription;
     private Spinner spinAppt;
     List<String> list;
+    List<String> listNames;
     ArrayAdapter<String> adapter;
 
     @Override
@@ -42,17 +44,44 @@ public class Business_ViewStorePage extends AppCompatActivity {
         storeName = findViewById(R.id.txtName);
         storeDescription = findViewById(R.id.txtDescrption);
         spinAppt = findViewById(R.id.spinAppointment);
+        apptDescription = findViewById(R.id.txtApptDescrption);
 
         //Grab Store Info
         StoreInformation();
 
         //Grab Store Appts
         list=new ArrayList<>();
+        listNames=new ArrayList<>();
 
 
 
 
         StoreAppt();
+
+        DatabaseReference reference = FirebaseDatabase.getInstance().getReference("Users").child(FirebaseAuth.getInstance().getCurrentUser().getUid()).child("Store Appointments");
+        reference.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                spinAppt.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+                    @Override
+                    public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
+                        String desc = snapshot.child(listNames.get(i)).child("apptDesc").getValue().toString();
+
+                        apptDescription.setText(desc);
+                    }
+
+                    @Override
+                    public void onNothingSelected(AdapterView<?> adapterView) {
+
+                    }
+                });
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
     }
 
 
@@ -87,16 +116,25 @@ public class Business_ViewStorePage extends AppCompatActivity {
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 for(DataSnapshot snap: snapshot.getChildren()) {
                     String spinnerApptNames = "";
+                    String names = "";
+
+                    names = names + snap.child("apptType").getValue().toString();
+
                     spinnerApptNames = spinnerApptNames + snap.child("apptType").getValue().toString();
                     spinnerApptNames = spinnerApptNames + "  -  @" + snap.child("apptTime").getValue().toString();
 
 
                     list.add(spinnerApptNames);
+                    listNames.add(names);
                 }
 
                 ArrayAdapter<String> arrayAdp = new ArrayAdapter<>(Business_ViewStorePage.this, R.layout.support_simple_spinner_dropdown_item, list);
                 arrayAdp.setDropDownViewResource(R.layout.support_simple_spinner_dropdown_item);
                 spinAppt.setAdapter(arrayAdp);
+
+                String desc = snapshot.child(listNames.get(0).toString()).child("apptDesc").getValue().toString();
+
+                apptDescription.setText(desc);
             }
 
             @Override
