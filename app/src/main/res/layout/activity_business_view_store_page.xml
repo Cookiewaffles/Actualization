@@ -8,6 +8,19 @@
     tools:context=".Business_ViewStorePage">
 
     <TextView
+        android:id="@+id/txtStoreLocation"
+        android:layout_width="322dp"
+        android:layout_height="36dp"
+        android:layout_marginTop="24dp"
+        android:text="Location"
+        android:textColor="@color/white"
+        android:textSize="16sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.494"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/txtName" />
+
+    <TextView
         android:id="@+id/txtApptDescrption"
         android:layout_width="318dp"
         android:layout_height="94dp"
@@ -61,16 +74,16 @@
 
     <TextView
         android:id="@+id/txtDescrption"
-        android:layout_width="318dp"
-        android:layout_height="94dp"
+        android:layout_width="322dp"
+        android:layout_height="36dp"
         android:layout_marginTop="24dp"
         android:text="Description"
         android:textColor="@color/white"
         android:textSize="16sp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.494"
+        app:layout_constraintHorizontal_bias="0.471"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/txtName" />
+        app:layout_constraintTop_toBottomOf="@+id/txtStoreLocation" />
 
     <Spinner
         android:id="@+id/spinAppointment"

@@ -43,7 +43,7 @@
         android:id="@+id/txtAppointment"
         android:layout_width="281dp"
         android:layout_height="39dp"
-        android:layout_marginTop="72dp"
+        android:layout_marginTop="28dp"
         android:autofillHints="Walter White"
         android:backgroundTint="@color/purple_200"
         android:ems="10"
@@ -53,7 +53,7 @@
         android:textColorHint="#737373"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/txtDescription" />
+        app:layout_constraintTop_toBottomOf="@+id/btnUpdate" />
 
     <EditText
         android:id="@+id/txtTimeFrame"
@@ -72,10 +72,42 @@
         app:layout_constraintTop_toBottomOf="@+id/txtAppointment" />
 
     <EditText
+        android:id="@+id/txtLocation"
+        android:layout_width="281dp"
+        android:layout_height="39dp"
+        android:layout_marginTop="16dp"
+        android:autofillHints="Walter White"
+        android:backgroundTint="@color/purple_200"
+        android:ems="10"
+        android:hint="Location"
+        android:inputType="textPersonName"
+        android:textColor="@color/white"
+        android:textColorHint="#737373"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/txtDescription" />
+
+    <EditText
+        android:id="@+id/txtDate"
+        android:layout_width="281dp"
+        android:layout_height="39dp"
+        android:layout_marginTop="16dp"
+        android:autofillHints="Walter White"
+        android:backgroundTint="@color/purple_200"
+        android:ems="10"
+        android:hint="Date"
+        android:inputType="textPersonName"
+        android:textColor="@color/white"
+        android:textColorHint="#737373"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/txtTimeFrame" />
+
+    <EditText
         android:id="@+id/txtApptDesc"
         android:layout_width="281dp"
         android:layout_height="39dp"
-        android:layout_marginTop="20dp"
+        android:layout_marginTop="16dp"
         android:autofillHints="Walter White"
         android:backgroundTint="@color/purple_200"
         android:ems="10"
@@ -85,28 +117,44 @@
         android:textColorHint="#737373"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/txtTimeFrame" />
+        app:layout_constraintTop_toBottomOf="@+id/txtCost" />
+
+    <EditText
+        android:id="@+id/txtCost"
+        android:layout_width="281dp"
+        android:layout_height="39dp"
+        android:layout_marginTop="16dp"
+        android:autofillHints="Walter White"
+        android:backgroundTint="@color/purple_200"
+        android:ems="10"
+        android:hint="Cost"
+        android:inputType="textPersonName"
+        android:textColor="@color/white"
+        android:textColorHint="#737373"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/txtDate" />
 
     <Button
         android:id="@+id/btnAddEvent"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
+        android:layout_marginTop="28dp"
         android:text="Add"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.486"
+        app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/txtApptDesc" />
 
     <Button
-        android:id="@+id/btnChange"
+        android:id="@+id/btnUpdate"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="12dp"
-        android:text="Change"
+        android:layout_marginTop="28dp"
+        android:text="Update"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/txtDescription" />
+        app:layout_constraintTop_toBottomOf="@+id/txtLocation" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

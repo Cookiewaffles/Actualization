@@ -41,12 +41,13 @@ public class Client_Personal extends AppCompatActivity {
     List<String> apptNames;
     ArrayAdapter<String> adapter;
 
-    TextView buisName, buisDesc, apptPopupDesc;
+    TextView buisName, buisLocate, buisDesc, apptPopupDesc;
     Button buisAdd, buisCancel;
     Spinner spinner;
 
 
     String name = "";
+    String locate = "";
     String desc = "";
     String apptDesc = "";
 
@@ -109,6 +110,7 @@ public class Client_Personal extends AppCompatActivity {
                final View contact = getLayoutInflater().inflate(R.layout.popup, null);
 
                buisName = contact.findViewById(R.id.txtBuisName);
+               buisLocate = contact.findViewById(R.id.txtBuisLocation);
                buisDesc = contact.findViewById(R.id.txtBuisDesc);
                spinner = contact.findViewById(R.id.spinAppointment2);
                apptPopupDesc = contact.findViewById(R.id.txtApptDescrption2);
@@ -129,6 +131,7 @@ public class Client_Personal extends AppCompatActivity {
                    public void onDataChange(@NonNull DataSnapshot snapshot) {
                        //Grab Store Information ---- Name and Description
                        name = snapshot.child("Store Info").child("name").getValue().toString();
+                       locate = snapshot.child("Store Info").child("location").getValue().toString();
                        desc = snapshot.child("Store Info").child("desc").getValue().toString();
 
 
@@ -163,6 +166,7 @@ public class Client_Personal extends AppCompatActivity {
 
 
                        buisName.setText(name);
+                       buisLocate.setText(locate);
                        buisDesc.setText(desc);
                        spinner.setAdapter(arrayAdp);
                        apptPopupDesc.setText(apptDesc);
@@ -175,6 +179,7 @@ public class Client_Personal extends AppCompatActivity {
                            @Override
                            public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
                                apptDesc = snapshot.child("Store Appointments").child(apptNames.get(i)).child("apptDesc").getValue().toString();
+                               apptDesc = apptDesc + "   ---   $" + snapshot.child("Store Appointments").child(apptNames.get(i).toString()).child("apptCost").getValue().toString();
 
                                apptPopupDesc.setText(apptDesc);
                            }
@@ -192,10 +197,19 @@ public class Client_Personal extends AppCompatActivity {
                });
 
 
-               //Removes Appointment from Buisness store page and adds appointments to Client appointment list
+               //Removes Appointment from Business store page and adds appointments to Client appointment list
                buisAdd.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {
+                        String addType = "";
+                        String addLocation = "";
+                        String addTime = "";
+                        String addDate = "";
+                        String addCost = "";
+                        String addDesc = "";
+
+
+                        StoreAppt addAppt = new StoreAppt(addType, addTime, addDate, addCost, addDesc);
                         dialog.dismiss();
 
                     }

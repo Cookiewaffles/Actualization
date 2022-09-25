@@ -9,14 +9,27 @@
 
     <TextView
         android:id="@+id/txtBuisDesc"
-        android:layout_width="318dp"
-        android:layout_height="94dp"
+        android:layout_width="317dp"
+        android:layout_height="30dp"
         android:layout_marginTop="24dp"
         android:text="Description"
         android:textColor="@color/white"
         android:textSize="16sp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.494"
+        app:layout_constraintHorizontal_bias="0.489"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/txtBuisLocation" />
+
+    <TextView
+        android:id="@+id/txtBuisLocation"
+        android:layout_width="317dp"
+        android:layout_height="30dp"
+        android:layout_marginTop="24dp"
+        android:text="Lcoation"
+        android:textColor="@color/white"
+        android:textSize="16sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.489"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/txtBuisName" />
 

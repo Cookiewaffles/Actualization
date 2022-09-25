@@ -3,14 +3,12 @@ package com.example.actualization;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.ProgressBar;
-import android.widget.SimpleAdapter;
 import android.widget.Toast;
 
 import com.google.firebase.auth.FirebaseAuth;
@@ -19,12 +17,6 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
-
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.Iterator;
-import java.util.List;
-import java.util.Map;
 
 public class Business_CreateStoreFront extends AppCompatActivity implements View.OnClickListener {
     //Firebase Variables
@@ -35,7 +27,7 @@ public class Business_CreateStoreFront extends AppCompatActivity implements View
 
     private ListView lv;
 
-    private EditText editStoreName, editDescription, editAppt, editTime, editApptDesc;
+    private EditText editStoreName, editDescription, editLocation, editAppt, editTime, editDate, editCost, editApptDesc;
 
     private Button change;
     private Button add;
@@ -47,11 +39,15 @@ public class Business_CreateStoreFront extends AppCompatActivity implements View
 
         editStoreName = findViewById(R.id.txtBusinessName);
         editDescription = findViewById(R.id.txtDescription);
+        editLocation = findViewById(R.id.txtLocation);
+
         editAppt = findViewById(R.id.txtAppointment);
         editTime = findViewById(R.id.txtTimeFrame);
+        editDate = findViewById(R.id.txtDate);
+        editCost = findViewById(R.id.txtCost);
         editApptDesc = findViewById(R.id.txtApptDesc);
 
-        change = findViewById(R.id.btnChange);
+        change = findViewById(R.id.btnUpdate);
         change.setOnClickListener(this);
 
         add = findViewById(R.id.btnAddEvent);
@@ -62,7 +58,7 @@ public class Business_CreateStoreFront extends AppCompatActivity implements View
     @Override
     public void onClick(View v) {
         switch (v.getId()) {
-            case R.id.btnChange:
+            case R.id.btnUpdate:
                 ChangeDescription();
                 break;
             case R.id.btnAddEvent:
@@ -76,6 +72,7 @@ public class Business_CreateStoreFront extends AppCompatActivity implements View
     public void ChangeDescription(){
         String storeName = editStoreName.getText().toString().trim();
         String storeDesc = editDescription.getText().toString().trim();
+        String storeLocate = editLocation.getText().toString().trim();
 
         if (storeName.isEmpty()) {
             editStoreName.setError("Appointment Type is Empty");
@@ -87,8 +84,13 @@ public class Business_CreateStoreFront extends AppCompatActivity implements View
             editDescription.requestFocus();
             return;
         }
+        if (storeLocate.isEmpty()) {
+            editLocation.setError("Time is Empty");
+            editLocation.requestFocus();
+            return;
+        }
 
-        StoreInfo info = new StoreInfo(storeName, storeDesc);
+        StoreInfo info = new StoreInfo(storeName, storeDesc, storeLocate);
 
         firebaseDatabase = FirebaseDatabase.getInstance();
         databaseReference = firebaseDatabase.getReference("Users").child(FirebaseAuth.getInstance().getCurrentUser().getUid()).child("Store Info");
@@ -112,6 +114,8 @@ public class Business_CreateStoreFront extends AppCompatActivity implements View
     public void AddEvent(){
         String appt = editAppt.getText().toString().trim();
         String apptTime = editTime.getText().toString().trim();
+        String apptDate = editDate.getText().toString().trim();
+        String apptCost = editCost.getText().toString().trim();
         String apptDesc = editApptDesc.getText().toString().trim();
 
         if (appt.isEmpty()) {
@@ -124,6 +128,16 @@ public class Business_CreateStoreFront extends AppCompatActivity implements View
             editTime.requestFocus();
             return;
         }
+        if (apptDate.isEmpty()) {
+            editDate.setError("Date is Empty");
+            editDate.requestFocus();
+            return;
+        }
+        if (apptCost.isEmpty()) {
+            editCost.setError("Cost is Empty");
+            editCost.requestFocus();
+            return;
+        }
         if (apptDesc.isEmpty()) {
             editApptDesc.setError("Description is Empty");
             editApptDesc.requestFocus();
@@ -131,7 +145,7 @@ public class Business_CreateStoreFront extends AppCompatActivity implements View
         }
 
 
-        StoreAppt appointment = new StoreAppt(appt, apptTime, apptDesc);
+        StoreAppt appointment = new StoreAppt(appt, apptTime, apptDate, apptCost, apptDesc);
 
         firebaseDatabase = FirebaseDatabase.getInstance();
         databaseReference = firebaseDatabase.getReference("Users").child(FirebaseAuth.getInstance().getCurrentUser().getUid()).child("Store Appointments").child(appt);
