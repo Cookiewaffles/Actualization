@@ -224,8 +224,6 @@ public class Client_Personal extends AppCompatActivity {
                                 addName = snapshot.child("Store Info").child("name").getValue().toString();
                                 addLocation = snapshot.child("Store Info").child("location").getValue().toString();
 
-                                Toast.makeText(Client_Personal.this, apptLookUp ,Toast.LENGTH_LONG);
-
                                 addType = addName + " --- " + snapshot.child("Store Appointments").child(apptLookUp).child("apptType").getValue().toString();
                                 addTime = snapshot.child("Store Appointments").child(apptLookUp).child("apptTime").getValue().toString();
                                 addDate = snapshot.child("Store Appointments").child(apptLookUp).child("apptDate").getValue().toString();
@@ -235,7 +233,7 @@ public class Client_Personal extends AppCompatActivity {
 
                                 snapshot.child("Store Appointments").child(apptLookUp).getRef().removeValue();
 
-                                FirebaseDatabase.getInstance().getReference("Users").child(FirebaseAuth.getInstance().getCurrentUser().getUid()).child("Appointments").child(addName + " Appt").setValue(addAppt);
+                                FirebaseDatabase.getInstance().getReference("Users").child(FirebaseAuth.getInstance().getCurrentUser().getUid()).child("Appointments").child(addType + " Appt").setValue(addAppt);
                                 }
 
                             @Override
