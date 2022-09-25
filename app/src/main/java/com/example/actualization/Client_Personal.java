@@ -28,6 +28,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
+import java.util.Locale;
 import java.util.Map;
 
 public class Client_Personal extends AppCompatActivity {
@@ -50,6 +51,16 @@ public class Client_Personal extends AppCompatActivity {
     String locate = "";
     String desc = "";
     String apptDesc = "";
+
+    String apptLookUp = "";
+
+    public String addName = "";
+    public String addType = "";
+    public String addLocation = "";
+    public String addTime = "";
+    public String addDate = "";
+    public String addCost = "";
+    public String addDesc = "";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -181,6 +192,9 @@ public class Client_Personal extends AppCompatActivity {
                                apptDesc = snapshot.child("Store Appointments").child(apptNames.get(i)).child("apptDesc").getValue().toString();
                                apptDesc = apptDesc + "   ---   $" + snapshot.child("Store Appointments").child(apptNames.get(i).toString()).child("apptCost").getValue().toString();
 
+
+                               apptLookUp = apptNames.get(i).toString();
+
                                apptPopupDesc.setText(apptDesc);
                            }
 
@@ -201,17 +215,36 @@ public class Client_Personal extends AppCompatActivity {
                buisAdd.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {
-                        String addType = "";
-                        String addLocation = "";
-                        String addTime = "";
-                        String addDate = "";
-                        String addCost = "";
-                        String addDesc = "";
+                        DatabaseReference mRef = FirebaseDatabase.getInstance().getReference("Users").child(id);
 
+                        mRef.addValueEventListener(new ValueEventListener() {
+                            @Override
+                            public void onDataChange(@NonNull DataSnapshot snapshot) {
 
-                        StoreAppt addAppt = new StoreAppt(addType, addTime, addDate, addCost, addDesc);
+                                addName = snapshot.child("Store Info").child("name").getValue().toString();
+                                addLocation = snapshot.child("Store Info").child("location").getValue().toString();
+
+                                Toast.makeText(Client_Personal.this, apptLookUp ,Toast.LENGTH_LONG);
+
+                                addType = addName + " --- " + snapshot.child("Store Appointments").child(apptLookUp).child("apptType").getValue().toString();
+                                addTime = snapshot.child("Store Appointments").child(apptLookUp).child("apptTime").getValue().toString();
+                                addDate = snapshot.child("Store Appointments").child(apptLookUp).child("apptDate").getValue().toString();
+                                addCost = snapshot.child("Store Appointments").child(apptLookUp).child("apptCost").getValue().toString();
+
+                                Appointment addAppt = new Appointment(addType, addDate, addTime, addLocation, addCost);
+
+                                snapshot.child("Store Appointments").child(apptLookUp).getRef().removeValue();
+
+                                FirebaseDatabase.getInstance().getReference("Users").child(FirebaseAuth.getInstance().getCurrentUser().getUid()).child("Appointments").child(addName + " Appt").setValue(addAppt);
+                                }
+
+                            @Override
+                            public void onCancelled(@NonNull DatabaseError error) {
+
+                            }
+                        });
+
                         dialog.dismiss();
-
                     }
                });
 
