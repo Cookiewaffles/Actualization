@@ -111,7 +111,7 @@ public class Client_CreateAppointment extends AppCompatActivity implements View.
         Appointment appt = new Appointment(name, date, time, location, cost);
 
         firebaseDatabase = FirebaseDatabase.getInstance();
-        databaseReference = firebaseDatabase.getReference("Users").child(FirebaseAuth.getInstance().getCurrentUser().getUid()).child("Appointments").child(name + "Appt");
+        databaseReference = firebaseDatabase.getReference("Users").child(FirebaseAuth.getInstance().getCurrentUser().getUid()).child("Appointments").child(name + " Appt");
 
         databaseReference.addValueEventListener(new ValueEventListener() {
             @Override
